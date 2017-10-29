@@ -1,0 +1,39 @@
+{#
+/**
+ * craft3-bugsnag plugin for Craft CMS 3.x
+ *
+ * craft3-bugsnag Settings.twig
+ *
+ * @author    Pinfire Studios <www.pinfirestudios.com>
+ * @copyright Copyright (c) 2017 Pinfire Studios <www.pinfirestudios.com>
+ * @link      https://www.pinfirestudios.com
+ * @package   Craft3bugsnag
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+    label: 'Bugsnag API key',
+    instructions: 'Your Bugsnag API key can be found on your Bugsnag project dashboard',
+    id: 'apiKey',
+    name: 'apiKey',
+    value: settings['apiKey']})
+}}
+
+{{ forms.textField({
+    label: 'Bugsnag release stage',
+    instructions: 'Release stage to send with all reports.  If blank, we\'ll use the CRAFT_ENVIRONMENT constant.',
+    id: 'releaseStage',
+    name: 'releaseStage',
+    value: settings['releaseStage']})
+}}
+
+{{ forms.textAreaField({
+    label: 'Bugsnag release stages to report',
+    instructions: 'Release stages to make reports with.  One per line.  Defaults to "production"',
+    id: 'notifyReleaseStages',
+    name: 'notifyReleaseStages',
+    value: settings['notifyReleaseStages']})
+}}

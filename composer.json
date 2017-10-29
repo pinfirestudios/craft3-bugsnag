@@ -1,0 +1,48 @@
+{
+    "name": "pinfirestudios/craft3-bugsnag",
+    "description": "Enables errors to be sent to Bugsnag (www.bugsnag.com)",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "craft3-bugsnag"
+    ],
+    "support": {
+        "docs": "https://github.com/pinfirestudios/craft3-bugsnag/blob/master/README.md",
+        "issues": "https://github.com/pinfirestudios/craft3-bugsnag/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pinfire Studios",
+            "homepage": "https://www.pinfirestudios.com"
+        }
+    ],
+	"minimum-stability": "dev",
+    "require": {
+        "craftcms/cms": "~3.0.0-beta.23",
+        "pinfirestudios/yii2-bugsnag": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "pinfirestudios\\craft3bugsnag\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Bugsnag integration",
+        "handle": "craft3-bugsnag",
+        "schemaVersion": "1.0.0",
+        "hasCpSettings": true,
+        "hasCpSection": false,
+        "class": "pinfirestudios\\craft3bugsnag\\BugsnagPlugin"
+    }
+}
