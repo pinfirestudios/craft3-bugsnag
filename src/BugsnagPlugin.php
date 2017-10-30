@@ -61,37 +61,59 @@ class BugsnagPlugin extends Plugin
             'releaseStage' => $releaseStage
         ]);
 
-        $errorHandlerConfig = [
-            'class' => 'pinfirestudios\craft3bugsnag\ErrorHandler',
-        ];
+		if (php_sapi_name() == 'cli') {
+			// We'll only be linked in the console configuration if we add the bootstrap
+			// setting to config/app.php
+            $errorHandlerConfig = [
+                'class' => '\pinfirestudios\yii2bugsnag\BugsnagConsoleErrorHandler'
+			];
 
-        // Unregister the old error handler and copy its properties to our instance.
-        $oldErrorHandler = Craft::$app->getErrorHandler();
-        if ($oldErrorHandler) {
-            $oldErrorHandler->unregister();
+			$properties = [
+				'discardExistingOutput',
+				'memoryReserveSize'
+			];
+        } else {
+            $errorHandlerConfig = [
+                'class' => '\pinfirestudios\craft3bugsnag\ErrorHandler',
+			];
 
-            $properties = [
-                'callStackItemView',
-                'discardExistingOutput',
-                'displayVars',
-                'errorAction',
-                'errorView',
-                'exceptionView',
-                'maxSourceLines',
-                'maxTraceSourceLines',
-                'memoryReserveSize',
-                'previousExceptionView',
-            ];
+			$properties = [
+				'callStackItemView',
+				'discardExistingOutput',
+				'displayVars',
+				'errorAction',
+				'errorView',
+				'exceptionView',
+				'maxSourceLines',
+				'maxTraceSourceLines',
+				'memoryReserveSize',
+				'previousExceptionView',
+			];
+		}
 
-            foreach ($properties as $property)
-            {
-                $errorHandlerConfig[$property] = $oldErrorHandler->{$property};
-            }
-        }
-    
-        Craft::$app->set('errorHandler', $errorHandlerConfig);
-        $errorHandler = Craft::$app->getErrorHandler();
-        $errorHandler->register();
+		// We are replacing Craft's (web) or Yii's (console) error handler, 
+		// so transfer all the properties to our class so we keep settings
+		// pure.
+		//
+		// To speed up initialization, we can set the errorHandler component
+		// in config/app.db, but this will implement it otherwise.
+		$oldErrorHandler = Craft::$app->getErrorHandler();
+		if (
+			$oldErrorHandler &&
+			get_class($oldErrorHandler) != $errorHandlerConfig['class']
+		) {
+			$oldErrorHandler->unregister();
+
+			foreach ($properties as $property)
+			{
+				$errorHandlerConfig[$property] = $oldErrorHandler->{$property};
+			}
+			
+			$errorHandler = Craft::createObject($errorHandlerConfig);
+
+			Craft::$app->set('errorHandler', $errorHandler);
+			$errorHandler->register();
+		}
 
         Craft::info(
             Craft::t(
