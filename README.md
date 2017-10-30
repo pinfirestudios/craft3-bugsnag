@@ -30,8 +30,7 @@ This will load the Bugsnag component and logging portion early in the project in
 
 ## Configuring craft3-bugsnag
 
-You will need to provide your API key defined as the BUGSNAG_API_KEY environmental variable or
-via the settings page.
+You will need to provide your API key and optionally the release stage via the settings page or via config/env files.  The recommended way however is to copy src/config.php to /APP_ROOT/config/craft3-bugsnag.php, then either edit it directly, or add BUGSNAG_API_KEY to your .env file.  For the release stage, if not set diretly, it will default to the CRAFT_ENVIRONMENT variable.
 
 ## Using craft3-bugsnag
 

@@ -23,9 +23,9 @@
  */
 
 return [
-	'bugsnagApiKey' => null,
+	'bugsnagApiKey' => getenv('BUGSNAG_API_KEY'),
 
 	// Defaults to CRAFT_ENVIRONMENT if null
-	'bugsnagReleaseStage' => null,
+	'bugsnagReleaseStage' => getenv('CRAFT_ENVIRONMENT'),
 	'bugsnagNotifyReleaseStages' => ['staging', 'production'],
 ];
