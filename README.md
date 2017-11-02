@@ -10,12 +10,6 @@ This plugin requires Craft CMS 3.0.0-beta.23 or later.
 
 To install the plugin, follow these instructions.
 
-0. If you don't have it already, install the composer-asset-plugin:
-
-Since this project is based on our [yii2-bugsnag](https://github.com/pinfirestudios/yii2-bugsnag) plugin, you need to install it in a ["Yii-standard"](http://www.yiiframework.com/doc-2.0/guide-start-installation.html#installing-from-composer) way.  As such, you need to install fxp/composer-asset-plugin first in order to get the JS component of this project.
-    
-    composer global require fxp/composer-asset-plugin
-
 1. Open your terminal and go to your Craft project:
 
         cd /path/to/project
