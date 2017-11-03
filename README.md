@@ -35,3 +35,37 @@ You will need to provide your API key and optionally the release stage via the s
 ## Using craft3-bugsnag
 
 If things crash and this is enabled, visit your Bugsnag dashboard to see why.
+
+## Getting Javascript errors
+
+If you would like to use Bugsnag's javascript on your site, you'll need to install *bower-asset/bugsnag*:
+
+1. Add the following to your project's composer.json
+
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+
+2. Require bower-asset/bugsnag
+
+    composer require bower-asset/bugsnag
+
+3. Once you have it installed, add BugsnagAsset to your TWIG file (or controller if working inside a plugin)
+ 
+In TWIG:
+
+	{% do view.registerAssetBundle("\\pinfirestudios\\yii2bugsnag\\BugsnagAsset") %}
+
+In a plugin asset:    
+
+	class AppAsset extends AssetBundle
+    {
+        public $depends = [
+            'pinfirestudios\yii2bugsnag\BugsnagAsset',
+        ];
+    }
+
+If you need to use version 2 of Bugsnag's javascript, you can specify the version in your configuration.  See [Customizing Asset Bundles](http://www.yiiframework.com/doc-2.0/guide-structure-assets.html#customizing-asset-bundles).
