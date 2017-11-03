@@ -12,19 +12,21 @@ To install the plugin, follow these instructions.
 
 1. Open your terminal and go to your Craft project:
 
-        cd /path/to/project
+    ```cd /path/to/project```
 
 2. Then tell Composer to load the plugin:
 
-        composer require pinfirestudios/craft3-bugsnag
+    ```composer require pinfirestudios/craft3-bugsnag```
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for craft3-bugsnag.
 
 4. If you want to be able to capture early initialization errors, you need to add this plugin to your project's [bootstrap  configuration](http://www.yiiframework.com/doc-2.0/yii-base-application.html#$bootstrap-detail).  To do this, in config/app.php, add:
 
+    ```
     'bootstrap' => [
         '\pinfirestudios\craft3bugsnag\Bootstrap'
     ]
+    ```
 
 This will load the Bugsnag component and logging portion early in the project initialization, giving you the greatest visibility into errors.  If you don't enable this, Bugsnag will be initialized when plugins are set up, later in the loading process.
 
@@ -42,26 +44,28 @@ If you would like to use Bugsnag's javascript on your site, you'll need to insta
 
 1. Add the following to your project's composer.json
 
+    ```
     "repositories": [
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
     ]
+    ```
 
 2. Require bower-asset/bugsnag
 
-    composer require bower-asset/bugsnag
+    ```composer require bower-asset/bugsnag```
 
 3. Once you have it installed, add BugsnagAsset to your TWIG file (or controller if working inside a plugin)
  
 In TWIG:
 
-	{% do view.registerAssetBundle("\\pinfirestudios\\yii2bugsnag\\BugsnagAsset") %}
+    {% do view.registerAssetBundle("\\pinfirestudios\\yii2bugsnag\\BugsnagAsset") %}
 
 In a plugin asset:    
 
-	class AppAsset extends AssetBundle
+    class AppAsset extends AssetBundle
     {
         public $depends = [
             'pinfirestudios\yii2bugsnag\BugsnagAsset',
