@@ -32,15 +32,15 @@ This will load the Bugsnag component and logging portion early in the project in
 
 ## Configuring craft3-bugsnag
 
-You will need to provide your API key and optionally the release stage via the settings page or via config/env files.  The recommended way however is to copy src/config.php to /APP_ROOT/config/craft3-bugsnag.php, then either edit it directly, or add BUGSNAG_API_KEY to your .env file.  For the release stage, if not set diretly, it will default to the CRAFT_ENVIRONMENT variable.
+You will need to provide your API key and optionally the release stage via the settings page or via config/env files.  The recommended way however is to copy src/config.php to /APP_ROOT/config/craft3-bugsnag.php, then either edit it directly, or add BUGSNAG_API_KEY to your .env file.  For the release stage, if not set directly, it will default to the CRAFT_ENVIRONMENT variable.
 
 ## Using craft3-bugsnag
 
 If things crash and this is enabled, visit your Bugsnag dashboard to see why.
 
-## Getting Javascript errors
+## Getting JavaScript errors
 
-If you would like to use Bugsnag's javascript on your site, you'll need to install *bower-asset/bugsnag*:
+If you would like to use Bugsnag's JavaScript on your site, you'll need to install *bower-asset/bugsnag*:
 
 1. Add the following to your project's composer.json
 
@@ -72,4 +72,4 @@ In a plugin asset:
         ];
     }
 
-If you need to use version 2 of Bugsnag's javascript, you can specify the version in your configuration.  See [Customizing Asset Bundles](http://www.yiiframework.com/doc-2.0/guide-structure-assets.html#customizing-asset-bundles).
+If you need to use version 2 of Bugsnag's JavaScript, you can specify the version in your configuration.  See [Customizing Asset Bundles](http://www.yiiframework.com/doc-2.0/guide-structure-assets.html#customizing-asset-bundles).
