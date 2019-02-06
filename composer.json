@@ -22,8 +22,8 @@
     ],
 	"minimum-stability": "beta",
     "require": {
-        "craftcms/cms": "^3.0.0-beta.23",
-        "pinfirestudios/yii2-bugsnag": "^1.0.3"
+        "craftcms/cms": "^3.1",
+        "pinfirestudios/yii2-bugsnag": "^1.0"
     },
     "autoload": {
         "psr-4": {
