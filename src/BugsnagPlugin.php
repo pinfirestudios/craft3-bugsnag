@@ -52,7 +52,7 @@ class BugsnagPlugin extends Plugin
         Craft::$app->set('bugsnag', [
             'class' => 'pinfirestudios\yii2bugsnag\BugsnagComponent',
             'bugsnag_api_key' => $settings->apiKey, 
-            'notifyReleaseStages' => explode("\n", str_replace("\r", "", $settings->notifyReleaseStages)),
+            'notifyReleaseStages' => preg_split('/\r\n|\r|\n/', $settings->notifyReleaseStages),
 			'releaseStage' => $settings->releaseStage ?? CRAFT_ENVIRONMENT
         ]);
 
