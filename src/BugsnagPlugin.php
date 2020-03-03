@@ -40,14 +40,19 @@ class BugsnagPlugin extends Plugin
         parent::init();
         self::$plugin = $this;
 
+        $settings = $this->getSettings();
+
+        if (empty($settings->apiKey)) {
+            Craft::warning('apiKey is not set, skipping rest of initialization.', __CLASS__);
+            return;
+        }
+
         // Install our components
         Craft::$app->getLog()->targets[] = Craft::createObject([
             'class' => \pinfirestudios\yii2bugsnag\BugsnagLogTarget::class,
             'levels' => ['error', 'warning', 'info', 'trace'],
             'logVars' => [],
         ]);
-
-        $settings = $this->getSettings();
 
         Craft::$app->set('bugsnag', [
             'class' => 'pinfirestudios\yii2bugsnag\BugsnagComponent',

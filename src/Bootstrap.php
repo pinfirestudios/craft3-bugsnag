@@ -27,6 +27,10 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
+        if (!$app->getIsInstalled()) {
+            return;
+        }
+
         $app->getPlugins()->getPlugin('craft3-bugsnag');
     }
 }
